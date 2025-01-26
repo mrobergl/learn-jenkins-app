@@ -86,6 +86,22 @@ pipeline {
                 '''
             }
         }
+        stage('Approval for Prod') {
+            steps {
+                script {
+                    def userInput = input(
+                        id: 'ProceedToProd',
+                        message: 'Do you want to deploy to production?',
+                        parameters: [
+                            booleanParam(defaultValue: false, description: 'Do you want to deploy to production?', name: 'Proceed')
+                        ]
+                    )
+                    if (!userInput.Proceed) {
+                        error('Pipeline aborted by user')
+                    }
+                }
+            }
+        }
         stage('Deploy prod') {
           agent{
               docker {
