@@ -45,7 +45,7 @@ pipeline {
           steps{
             sh '''
               npm install serve
-              node_modules\.bin\serve -s build
+              Jenkins_Jobs_Pipelines_CICD_and_DevOps_for_Beginners\learn-jenkins-app\node_modules\.bin\serve -s build
               npx playwright test
             '''
           }
