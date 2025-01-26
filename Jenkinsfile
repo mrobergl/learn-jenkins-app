@@ -68,7 +68,8 @@ pipeline {
               }
             }
           }
-        }stage('Deploy staging') {
+        }
+        stage('Deploy staging') {
           agent{
               docker {
                   image 'node:18-alpine'
