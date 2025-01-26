@@ -96,7 +96,9 @@ pipeline {
                       reuseNode true
                   }
               }
-              CI_ENVIRONMENT_URL = 'https://https://soft-beijinho-351299.netlify.app'
+              environment {
+                CI_ENVIRONMENT_URL = 'https://https://soft-beijinho-351299.netlify.app'
+              }
               steps {
                 sh '''
                   npx playwright test --reporter=html
