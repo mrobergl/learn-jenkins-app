@@ -94,7 +94,7 @@ pipeline {
                   }
               }
               environment {
-                CI_ENVIRONMENT_URL = 'https://https://soft-beijinho-351299.netlify.app'
+                CI_ENVIRONMENT_URL = 'http://https://soft-beijinho-351299.netlify.app'
               }
               steps {
                 sh '''
