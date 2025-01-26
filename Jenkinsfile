@@ -58,7 +58,7 @@ pipeline {
                   echo "Running E2E tests.."
                   npm install serve
                   node_modules/.bin/serve -s build &
-                  Sleep 10
+                  sleep 10
                   // Play a test locally
                   npx playwright test
                   npx playwright test --reporter=html
