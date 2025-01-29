@@ -12,7 +12,6 @@ pipeline {
             sh 'docker image build -t my-playwright .'
             }
           }
-        }
         stage('Build') {
           agent{
               docker {
