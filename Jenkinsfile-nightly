@@ -4,7 +4,7 @@ pipeline {
         stage ('Build Docker Image') {
           agent any
           steps {
-            sh 'docker image build -t my-playwright .'
+            sh 'docker image build -t my-playwright -f Jenkins_Jobs_Pipelines_CICD_and_DevOps_for_Beginners\learn-jenkins-app\ci\Dockerfile'
           }
         }
     }
