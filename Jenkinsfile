@@ -35,7 +35,10 @@ pipeline {
               }
             }
           steps {
-            sh 'docker image build -t myjenkinsapp .'
+            sh '''
+              amazon-linux-extras install docker
+              docker image build -t myjenkinsapp .
+              '''
           }
         }
         stage('Deploy to AWS') {
