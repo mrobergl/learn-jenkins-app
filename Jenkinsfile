@@ -6,6 +6,18 @@ pipeline {
         REACT_APP_VERSION = "1.0.${BUILD_NUMBER}"
     }
     stages {
+        stage('AWS') {
+            agent{
+                docker {
+                    image 'amazon/aws-cli'
+                    reuseNode true
+                }
+            }
+            steps {
+                echo 'Checking out code..'
+                checkout scm
+            }
+        }
         stage('Build') {
           agent{
               docker {
