@@ -17,6 +17,7 @@ pipeline {
                 echo 'AWS CLI..'
                 sh '''
                   aws --version
+                  args="--entrypoint=''"
                 '''
             }
         }
