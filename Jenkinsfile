@@ -5,7 +5,7 @@ pipeline {
         APP_NAME="learnjenkinsapp"
         AWS_REGION = 'us-east-1'
         AWS_ECS_CLUSTER = "arn:aws:ecs:us-east-1:554352105641:cluster/LearningJenkinsApp-Cluster-Prod"
-        AWS_DOCKER_REGISTRY = "554352105641.dkr.ecr.us-east-1.amazonaws.com/learnjenkinsapp"
+        AWS_DOCKER_REGISTRY = "554352105641.dkr.ecr.us-east-1.amazonaws.com"
         AWS_ECS_SERVICE = "LearnJenkinsApp-Service-Prod"
         AWS_TASK_DEFINITION = "LearnJenkinsApp-TaskDefinition-Prod"
 
