@@ -14,8 +14,10 @@ pipeline {
                 }
             }
             steps {
-                echo 'Checking out code..'
-                checkout scm
+                echo 'AWS CLI..'
+                sh '''
+                  aws --version
+                '''
             }
         }
         stage('Build') {
