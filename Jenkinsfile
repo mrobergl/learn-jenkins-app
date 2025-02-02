@@ -29,22 +29,21 @@ pipeline {
         stage ('Build Docker Image') {
           agent{
               docker {
-                  image 'amazon/aws-cli'
+                  image 'my-aws-cli'
                   reuseNode true
                   args "-u root -v /var/run/docker.sock:/var/run/docker.sock --entrypoint=''"
               }
             }
           steps {
             sh '''
-              amazon-linux-extras install docker
-              docker image build -t myjenkinsapp .
+              docker build -t myjenkinsapp .
               '''
           }
         }
         stage('Deploy to AWS') {
             agent{
                 docker {
-                    image 'amazon/aws-cli'
+                    image 'aws-cli'
                     reuseNode true
                     args "-u root --entrypoint=''"
                 }
@@ -56,7 +55,6 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'aws', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
                   sh '''
                     aws --version
-                    yum install -y jq
                     LATEST_TD_REVISION=$(aws ecs register-task-definition --cli-input-json file://aws/task-definition-prod.json | jq -r '.taskDefinition.revision')
                     aws ecs update-service --cluster $AWS_ECS_CLUSTER --service LearnJenkinsApp-Service-Prod --task-definition $AWS_TASK_DEFINITION:$LATEST_TD_REVISION
                     aws ecs wait services-stable --cluster $AWS_ECS_CLUSTER --services $AWS_ECS_SERVICE
