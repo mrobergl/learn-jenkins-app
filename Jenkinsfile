@@ -10,6 +10,7 @@ pipeline {
             agent{
                 docker {
                     image 'amazon/aws-cli'
+                    args="--entrypoint=''"
                     reuseNode true
                 }
             }
@@ -17,7 +18,6 @@ pipeline {
                 echo 'AWS CLI..'
                 sh '''
                   aws --version
-                  args="--entrypoint=''"
                 '''
             }
         }
