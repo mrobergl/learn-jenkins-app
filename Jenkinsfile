@@ -13,12 +13,16 @@ pipeline {
                     args "--entrypoint=''"
                 }
             }
+            environment {
+                AWS_DEFAULT_REGION = 'us-east-1'
+                AWS_S3_BUCKET = 'learn-jenkins-02022025'
+            }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'aws', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
                   sh '''
                     aws --version
                     echo "I love Elaheh" > index.html
-                    aws s3 cp index.html s3://learn-jenkins-02022025/index.html
+                    aws s3 cp index.html s3://$AWS_S3_BUCKET/index.html
                   '''
                 } 
             }
